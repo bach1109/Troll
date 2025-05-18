@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Trang Bí Ẩn</title>
+  <style>
+    body {
+      background: black;
+      margin: 0;
+      overflow: hidden;
+    }
+    #scare-img {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      display: none;
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+  <audio id="scare-sound" src="laugh.mp3"></audio>
+  <img id="scare-img" src="jumpscare.jpg" />
+
+  <script>
+    setTimeout(() => {
+      document.getElementById("scare-img").style.display = "block";
+      const sound = document.getElementById("scare-sound");
+      sound.volume = 1.0;
+      sound.play();
+
+      // Hiệu ứng rung màn hình
+      let intensity = 10;
+      const shake = setInterval(() => {
+        document.body.style.marginLeft = (Math.random() * intensity - intensity/2) + 'px';
+        document.body.style.marginTop = (Math.random() * intensity - intensity/2) + 'px';
+      }, 50);
+      setTimeout(() => clearInterval(shake), 3000);
+    }, 3000); // Delay 3 giây
+  </script>
+</body>
+</html>
